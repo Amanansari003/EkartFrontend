@@ -6,13 +6,15 @@ import { OrderTotalsComponent } from './components/order-totals/order-totals.com
 import { RouterModule } from '@angular/router';
 import { BasketSummaryComponent } from './components/basket-summary/basket-summary.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TextInputComponent } from './components/text-input/text-input.component';
 
 @NgModule({
   declarations: [
     PagingHeaderComponent,
     PagerComponent,
     OrderTotalsComponent,
-    BasketSummaryComponent
+    BasketSummaryComponent,
+    TextInputComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     PagerComponent,
     OrderTotalsComponent,
     BasketSummaryComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TextInputComponent
   ]
 })
 export class SharedModule { }
