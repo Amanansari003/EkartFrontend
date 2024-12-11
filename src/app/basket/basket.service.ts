@@ -52,7 +52,7 @@ export class BasketService {
     if (this.isProduct(item)) item = this.mapProductItemToBasketItem(item);
     const basket = this.getCurrentBasketValue() ?? this.createBasket();
     basket.items = this.addOrUpdateItem(basket.items, item, quantity);
-    this.setBasket(basket); 
+    this.setBasket(basket);
   }
 
   

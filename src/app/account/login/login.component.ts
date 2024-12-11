@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AsyncValidatorFn, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from '../account.service';
-import { IUser } from 'src/app/shared/models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +12,10 @@ export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required,Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]),
-    password: new FormControl('', [Validators.required,Validators.pattern("(?=^.{6,10}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\\s).*$")])
+    password: new FormControl('', [Validators.required,Validators.pattern("(?=^.{6,20}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\\s).*$")])
   })
 
-  constructor(private accountService: AccountService){ }
+  constructor(private accountService: AccountService, private router: Router){ }
 
   ngOnInit(): void {
   }
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     this.accountService.login(this.loginForm.value).subscribe({
       next:()=>{
+        this.router.navigateByUrl('/shop')
         console.log("User Loged In ");
       },
       error:(error:any)=>{
